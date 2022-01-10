@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>firebase-social-auth-hello-world</title>
+  </head>
+  <body>
+    <h1>...Please wait</h1>
+    <div id="info"></div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+    <script src="./config.js"></script>
+    <script>
+      firebase.initializeApp(firebaseConfig);
+      firebase.auth().onAuthStateChanged((user) => {
+        let h1 = document.querySelector("h1");
+        let info = document.querySelector("#info");
+        if (user) {
+          console.log(user);
+          h1.innerText = "Login Complete!";
+          info.innerHTML = JSON.stringify({
+            displayName: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          });
+        } else {
+          h1.innerText = "Not Login";
+        }
+      });
+    </script>
+  </body>
+</html>
