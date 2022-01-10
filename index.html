@@ -19,7 +19,8 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       var uiConfig = {
-        signInSuccessUrl: "/firebase-social-auth-hello-world/success.html",
+        signInSuccessUrl: "/firebase-social-auth-hello-world/success.html", // github pages
+        // signInSuccessUrl: "/success.html", // local
         signInOptions: [firebase.auth.GithubAuthProvider.PROVIDER_ID],
       };
       var ui = new firebaseui.auth.AuthUI(firebase.auth());
