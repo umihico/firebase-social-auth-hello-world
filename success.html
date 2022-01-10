@@ -17,11 +17,17 @@
         let info = document.querySelector("#info");
         if (user) {
           console.log(user);
-          h1.innerText = "Login Complete!";
-          info.innerHTML = JSON.stringify({
-            displayName: user.displayName,
-            email: user.email,
-            uid: user.uid,
+          user.getIdToken().then((token) => {
+            console.log(token);
+            h1.innerText = "Login Complete!";
+            info.innerHTML = JSON.stringify({
+              displayName: user.displayName,
+              email: user.email,
+              uid: user.uid,
+              raw_jwt: token,
+              jwt0: JSON.parse(atob(token.split(".")[0])),
+              jwt1: JSON.parse(atob(token.split(".")[1])),
+            });
           });
         } else {
           h1.innerText = "Not Login";
